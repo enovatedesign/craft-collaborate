@@ -1,0 +1,34 @@
+html #togetherjs-dock,
+html .togetherjs .togetherjs-window header,
+html .togetherjs .togetherjs-modal header,
+html .togetherjs .togetherjs-primary {
+{
+    background-color:#da5a47;
+}
+
+html .togetherjs #togetherjs-buttons .togetherjs-button:hover,
+html .togetherjs .togetherjs-primary:hover,
+html .togetherjs .togetherjs-subtitle
+{
+    background-color: #bf503f;
+}
+
+html .togetherjs .togetherjs-subtitle
+{
+    border-bottom-color: #8c3b2e;
+}
+
+html .togetherjs #togetherjs-buttons .togetherjs-active
+{
+    background-color: #8c3b2e !important;
+}
+
+html #togetherjs-profile-arrow
+{
+    background:none;
+}
+
+html #togetherjs-dock-anchor-horizontal img
+{
+    display:none;
+}

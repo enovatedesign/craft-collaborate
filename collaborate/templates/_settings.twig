@@ -1,0 +1,149 @@
+{% import "_includes/forms" as forms %}
+
+<h1>Plugin Settings</h1>
+
+{{ forms.lightswitchField({
+    label: "Show Link in Navigation bar?"|t,
+    on: settings.hasCpSection,
+    name: 'hasCpSection',
+}) }}
+
+{{ forms.textField({
+    label: "Plugin Name"|t,
+    name: 'pluginName',
+    required: true,
+    instructions: "This replaces the text in the plugin list, and the navigation bar if it's enabled."|t,
+    value: settings.pluginName,
+    errors: settings.getErrors('pluginName')
+}) }}
+
+{{ forms.lightswitchField({
+    label: "Enable For Your Site's Front-end?"|t,
+    on: settings.enableSite,
+    name: 'enableSite',
+}) }}
+
+{{ forms.lightswitchField({
+    label: "Enable For The Craft Control Panel?"|t,
+    on: settings.enableCp,
+    name: 'enableCp',
+}) }}
+
+<h1>TogetherJS Configuration</h1>
+
+{{ forms.textField({
+    label: "Site Name"|t,
+    name: 'siteName',
+    placeholder: siteName,
+    instructions: "Defaults to the Site Name setting in Craft."|t,
+    value: settings.siteName,
+    errors: settings.getErrors('siteName')
+}) }}
+
+{{ forms.textField({
+    label: "Hub Base"|t,
+    name: 'hubBase',
+    placeholder: 'https://hub.togetherjs.com',
+    instructions: "The hub is a simple server that echoes messages back and forth between clients. It‘s the only real server component of TogetherJS. Leave blank to use Mozilla's."|t,
+    value: settings.hubBase,
+    errors: settings.getErrors('hubBase')
+}) }}
+
+{{ forms.lightswitchField({
+    label: "Include Hash in URL?",
+    instructions: "Treats the entire URL, including the hash, as the identifier of the page; i.e., if you one person is on "~ siteUrl~"#view1 and another person is at "~siteUrl~"#view2 then these two people are considered to be at completely different URLs.",
+    on: settings.includeHashInUrl,
+    name: 'includeHashInUrl'
+}) }}
+
+{{ forms.lightswitchField({
+    label: "Enable Shortcut?",
+    instructions: "Start collaborating when you hit alt-T alt-T (twice in a row!)",
+    on: settings.enableShortcut,
+    name: 'enableShortcut'
+}) }}
+
+{{ forms.lightswitchField({
+    label: 'Suppress Join Confirmation?',
+    instructions: "When a person is invited to a session, they'll be asked if they want to join in browsing with the other person. Switch this on and they won't be asked to confirm joining.",
+    on: settings.suppressJoinConfirmation,
+    name: 'suppressJoinConfirmation'
+}) }}
+
+{{ forms.lightswitchField({
+    label: 'Suppress Invite?',
+    instructions: "When a person starts a session, usually a window will pop open with the invite link so they can send it to someone. If this is on then that window doesn't automatically pop open (but it is still available).",
+    on: settings.suppressInvite,
+    name: 'suppressInvite'
+}) }}
+
+{{ forms.lightswitchField({
+    label: 'Disable WebRTC?',
+    instructions: "Disables/removes the button to do audio chat via WebRTC.",
+    on: settings.disableWebRTC,
+    name: 'disableWebRTC'
+}) }}
+
+{{ forms.lightswitchField({
+    label: 'Synchronise YouTube Videos?',
+    instructions: "If enabled, then YouTube videos will be synchronised (i.e., when one person plays or pauses a video, it will play for all people). This will also load up the YouTube iframe API.",
+    on: settings.youtube,
+    name: 'youtube'
+}) }}
+
+{{ forms.lightswitchField({
+    label: 'Disable Console Logging?',
+    instructions: "Ignore all messages when logging to the console.",
+    on: settings.ignoreAllMessages,
+    name: 'ignoreAllMessages'
+}) }}
+
+<h2>Visual Click Indicators</h2>
+
+{{ forms.lightswitchField({
+    label: "Hide All Clicks?"|t,
+    instructions: "Disables the visual click display indicating that a user has clicked on any element."|t,
+    on: settings.dontShowAllClicks,
+    name: 'dontShowAllClicks',
+}) }}
+
+{{ forms.textField({
+    label: "Hide Clicks For Specific Elements"|t,
+    name: 'dontShowClicks',
+    instructions: "This should be set to a jQuery selector for elements you'd like to disable the visual click indicator for, or left blank."|t,
+    value: settings.dontShowClicks,
+    errors: settings.getErrors('dontShowClicks')
+}) }}
+
+<h2>Click Cloning</h2>
+
+{{ forms.lightswitchField({
+    label: "Clone All Clicks?"|t,
+    instructions: "Whenever someone clicks on an element that click will be repeated (as an actual click) on everyone else's browser."|t,
+    on: settings.cloneAllClicks,
+    name: 'cloneAllClicks',
+}) }}
+
+{{ forms.textField({
+    label: "Clone Clicks For Specific Elements"|t,
+    name: 'cloneClicks',
+    instructions: "Whenever someone clicks on an element matching this selector, that click will be repeated (as an actual click) on everyone else‘s browser. This is useful for cases when a click typically doesn’t do anything, but shows or hides or switches the view of the page. Note that any control that toggles will definitely not work here!"|t,
+    value: settings.cloneClicks,
+    errors: settings.getErrors('cloneClicks')
+}) }}
+
+<h2>Forms</h2>
+
+{{ forms.lightswitchField({
+    label: "Ignore All Forms?"|t,
+    on: settings.ignoreAllForms,
+    name: 'ignoreAllForms',
+}) }}
+
+{{ forms.textField({
+    label: "Ignore Specific Form Elements"|t,
+    name: 'ignoreForms',
+    instructions: "A comma-separated list of all the form elements that will be ignored."|t,
+    value: settings.ignoreForms,
+    errors: settings.getErrors('ignoreForms')
+}) }}

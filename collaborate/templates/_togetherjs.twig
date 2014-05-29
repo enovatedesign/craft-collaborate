@@ -1,0 +1,28 @@
+<script type="text/javascript">
+    var TogetherJSConfig_siteName = '{{ settings.siteName|default(siteName)|e('js') }}';
+    var TogetherJSConfig_toolName = '{{ settings.pluginName|e('js') }}';
+
+    {%- if currentUser -%}
+        var TogetherJSConfig_getUserName    = function () { return '{{ currentUser.fullName|e('js') }}'; };
+        var TogetherJSConfig_getUserAvatar  = function() { return '{{ currentUser.photoUrl }}'; };
+    {%- endif -%}
+
+    {%- if settings.hubBase -%}
+        var TogetherJSConfig_hubBase = '{{ settings.hubBase|e('js') }}';
+    {%- endif -%}
+
+    var TogetherJSConfig_includeHashInUrl = {{ settings.includeHashInUrl ? 'true' : 'false' }};
+    var TogetherJSConfig_enableShortcut = {{ settings.enableShortcut ? 'true' : 'false' }};
+    var TogetherJSConfig_suppressJoinConfirmation = {{ settings.suppressJoinConfirmation ? 'true' : 'false' }};
+    var TogetherJSConfig_suppressInvite = {{ settings.suppressInvite ? 'true' : 'false' }};
+    var TogetherJSConfig_disableWebRTC = {{ settings.disableWebRTC ? 'true' : 'false' }};
+    var TogetherJSConfig_youtube = {{ settings.youtube ? 'true' : 'false' }};
+    {%- if settings.ignoreAllMessages -%}
+      var TogetherJSConfig_ignoreMessages = true;
+    {%- endif -%}
+    {%- if not (not settings.dontShowAllClicks and not settings.dontShowClicks) %}
+        var TogetherJSConfig_dontShowClicks = {% if settings.dontShowAllClicks %}true{% else %}'{{ settings.dontShowClicks }}'{% endif %};
+    {%- endif -%}
+    var TogetherJSConfig_cloneClicks = {% if settings.cloneAllClicks %}true{% else %}'{{ settings.cloneClicks }}'{% endif %};
+    var TogetherJSConfig_ignoreForms = {% if settings.ignoreAllForms %}true{% else %}["{{ settings.ignoreForms|split(', ')|join('", "')|raw }}"]{% endif %};
+</script>
